@@ -21,7 +21,7 @@ public class CoordsHud implements HudRenderCallback {
             double y = player.getY();
             double z = player.getZ();
             String facing = player.getHorizontalFacing().toString();
-            //facing = "Facing: " + facing.substring(0, 1).toUpperCase() + facing.substring(1);
+            facing = "Facing: " + facing.substring(0, 1).toUpperCase() + facing.substring(1);
             String coords = String.format("X: %.2f Y: %.2f Z: %.2f", x, y, z).replace(',', '.');
 
             int posX = 2;
@@ -30,9 +30,9 @@ public class CoordsHud implements HudRenderCallback {
             int textHeight = client.textRenderer.fontHeight;
             int padding = 2;
             int offset = 5;
-            drawContext.fill(0, 0, textWidth + padding + offset, posY + 1 * textHeight + padding, 0x30000000);
+            drawContext.fill(0, 0, textWidth + padding + offset, posY + 2 * textHeight + padding, 0x30000000);
             drawContext.drawTextWithShadow(client.textRenderer, coords, posX, posY, 0xFFFFFF);
-            //drawContext.drawTextWithShadow(client.textRenderer, facing, posX, posY + textHeight + 1, 0xFFFFFF);
+            drawContext.drawTextWithShadow(client.textRenderer, facing, posX, posY + textHeight + 1, 0xFFFFFF);
         }
     }
 }
