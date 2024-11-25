@@ -8,8 +8,8 @@ The mod is compatible with all other modifications
 ## Support 
 Support all popular versions of Minecraft, starting from 1.17 (comming soon)
 
-##LICENSE
+## LICENSE
 MIT License
 
-##Contact
+## Contact
 Write me on Discord: @r4mble_
