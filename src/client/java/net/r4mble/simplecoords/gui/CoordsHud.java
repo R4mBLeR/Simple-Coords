@@ -1,17 +1,13 @@
 package net.r4mble.simplecoords.gui;
 
-import me.shedaniel.autoconfig.AutoConfig;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.render.RenderTickCounter;
 import net.minecraft.entity.player.PlayerEntity;
-import net.r4mble.simplecoords.config.ModConfig;
-import net.r4mble.simplecoords.config.ModConfigData;
-import net.r4mble.simplecoords.config.ModConfigDefaults;
+import net.r4mble.simplecoords.SimpleCoordsClient;
 
 @Environment(EnvType.CLIENT)
 public class CoordsHud implements HudRenderCallback {
@@ -19,14 +15,10 @@ public class CoordsHud implements HudRenderCallback {
     int posY = 2;
     int padding = 2;
     int offset = 5;
-    ModConfig config = new ModConfigDefaults();
     @Override
     public void onHudRender(DrawContext drawContext, RenderTickCounter tickCounter) {
         MinecraftClient client = MinecraftClient.getInstance();
         PlayerEntity player = client.player;
-        if(FabricLoader.getInstance().isModLoaded("cloth-config")) {
-            config = AutoConfig.getConfigHolder(ModConfigData.class).getConfig();
-        }
         if (player != null) {
             int textHeight = client.textRenderer.fontHeight;
             int textWidth = 0;
@@ -35,7 +27,7 @@ public class CoordsHud implements HudRenderCallback {
             String facing;
             String fps;
             String biome;
-            if(config.showCoords())
+            if(SimpleCoordsClient.config.showCoords())
             {
                 double x = player.getX();
                 double y = player.getY();
@@ -46,7 +38,7 @@ public class CoordsHud implements HudRenderCallback {
                 drawCount++;
 
             }
-            if(config.showFacing())
+            if(SimpleCoordsClient.config.showFacing())
             {
                 facing = player.getHorizontalFacing().toString();
                 facing = "Facing: " + facing.substring(0, 1).toUpperCase() + facing.substring(1);
@@ -55,14 +47,14 @@ public class CoordsHud implements HudRenderCallback {
                 drawCount++;
 
             }
-            if(config.showBiome())
+            if(SimpleCoordsClient.config.showBiome())
             {
                 biome = "Biome: " + player.getWorld().getBiome(player.getBlockPos()).getIdAsString();
                 textWidth = Math.max(textWidth, client.textRenderer.getWidth(biome));
                 drawContext.drawTextWithShadow(client.textRenderer, biome, posX, posY + drawCount * textHeight + 1, 0xFFFFFF);
                 drawCount++;
             }
-            if(config.showFPS())
+            if(SimpleCoordsClient.config.showFPS())
             {
                 fps = client.getCurrentFps() +" fps";
                 textWidth = Math.max(textWidth, client.textRenderer.getWidth(fps));
