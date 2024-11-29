@@ -14,6 +14,7 @@ public class CoordsHud implements HudRenderCallback {
     int posY = 2;
     int padding = 2;
     int offset = 5;
+
     @Override
     public void onHudRender(DrawContext drawContext, float v) {
         MinecraftClient client = MinecraftClient.getInstance();
@@ -26,8 +27,7 @@ public class CoordsHud implements HudRenderCallback {
             String facing;
             String fps;
             String biome;
-            if(SimpleCoordsClient.config.showCoords())
-            {
+            if (SimpleCoordsClient.config.showCoords()) {
                 double x = player.getX();
                 double y = player.getY();
                 double z = player.getZ();
@@ -37,8 +37,7 @@ public class CoordsHud implements HudRenderCallback {
                 drawCount++;
 
             }
-            if(SimpleCoordsClient.config.showFacing())
-            {
+            if (SimpleCoordsClient.config.showFacing()) {
                 facing = player.getHorizontalFacing().toString();
                 facing = "Facing: " + facing.substring(0, 1).toUpperCase() + facing.substring(1);
                 textWidth = Math.max(textWidth, client.textRenderer.getWidth(facing));
@@ -46,23 +45,20 @@ public class CoordsHud implements HudRenderCallback {
                 drawCount++;
 
             }
-            if(SimpleCoordsClient.config.showBiome())
-            {
-                biome = "Biome: " + player.getWorld().getBiome(player.getBlockPos()).getIdAsString();
+            if (SimpleCoordsClient.config.showBiome()) {
+                biome = "Biome: " + player.getWorld().getBiome(player.getBlockPos()).getKey().get().getValue().toString();
                 textWidth = Math.max(textWidth, client.textRenderer.getWidth(biome));
                 drawContext.drawTextWithShadow(client.textRenderer, biome, posX, posY + drawCount * textHeight + 1, 0xFFFFFF);
                 drawCount++;
             }
-            if(SimpleCoordsClient.config.showFPS())
-            {
-                fps = client.getCurrentFps() +" fps";
+            if (SimpleCoordsClient.config.showFPS()) {
+                fps = client.getCurrentFps() + " fps";
                 textWidth = Math.max(textWidth, client.textRenderer.getWidth(fps));
                 drawContext.drawTextWithShadow(client.textRenderer, fps, posX, posY + drawCount * textHeight + 1, 0xFFFFFF);
                 drawCount++;
 
             }
-            if(drawCount>0)
-            {
+            if (drawCount > 0) {
                 drawContext.fill(0, 0, textWidth + padding + offset, posY + drawCount * textHeight + padding, 0x30000000);
             }
         }
