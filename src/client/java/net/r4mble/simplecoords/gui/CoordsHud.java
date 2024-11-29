@@ -5,7 +5,6 @@ import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.render.RenderTickCounter;
 import net.minecraft.entity.player.PlayerEntity;
 import net.r4mble.simplecoords.SimpleCoordsClient;
 
@@ -16,7 +15,7 @@ public class CoordsHud implements HudRenderCallback {
     int padding = 2;
     int offset = 5;
     @Override
-    public void onHudRender(DrawContext drawContext, RenderTickCounter tickCounter) {
+    public void onHudRender(DrawContext drawContext, float v) {
         MinecraftClient client = MinecraftClient.getInstance();
         PlayerEntity player = client.player;
         if (player != null) {
