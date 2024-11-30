@@ -88,3 +88,9 @@ publishing {
     repositories {
     }
 }
+
+configurations.all {
+    resolutionStrategy {
+        force("net.fabricmc:fabric-loader:$loader_version")
+    }
+}
