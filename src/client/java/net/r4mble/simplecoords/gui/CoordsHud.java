@@ -54,7 +54,8 @@ public class CoordsHud implements HudRenderCallback {
                 drawCount++;
             }
             if (SimpleCoordsClient.config.showFPS()) {
-                fps = client.fpsDebugString + " fps";
+                fps = client.fpsDebugString;
+                fps = fps.substring(0, fps.indexOf("fps") + 3);
                 textWidth = Math.max(textWidth, client.textRenderer.getWidth(fps));
                 DrawableHelper.drawTextWithShadow(matrixStack, client.textRenderer, Text.literal(fps), posX, posY + drawCount * textHeight + 1, 0xFFFFFF);
                 drawCount++;
