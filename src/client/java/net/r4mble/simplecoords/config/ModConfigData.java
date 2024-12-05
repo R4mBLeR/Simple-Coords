@@ -5,10 +5,16 @@ import me.shedaniel.autoconfig.annotation.Config;
 
 @Config(name = "simplecoords")
 public class ModConfigData implements ConfigData, ModConfig {
+    public float HudScale = ModConfigDefaults.HudScale;
     public boolean showCoords = ModConfigDefaults.showCoords;
     public boolean showFacing = ModConfigDefaults.showFacing;
     public boolean showBiome = ModConfigDefaults.showBiome;
     public boolean showFPS = ModConfigDefaults.showFPS;
+
+    @Override
+    public float HudScale() {
+        return HudScale;
+    }
 
     @Override
     public boolean showCoords() {
