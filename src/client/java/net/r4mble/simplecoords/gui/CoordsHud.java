@@ -29,40 +29,45 @@ public class CoordsHud implements HudRenderCallback {
             String facing;
             String fps;
             String biome;
-            if (SimpleCoordsClient.config.showCoords()) {
-                double x = player.getX();
-                double y = player.getY();
-                double z = player.getZ();
-                coords = String.format("X: %.2f Y: %.2f Z: %.2f", x, y, z).replace(',', '.');
-                textWidth = Math.max(textWidth, client.textRenderer.getWidth(coords));
-                DrawableHelper.drawTextWithShadow(matrixStack, client.textRenderer, Text.literal(coords), posX, posY, 0xFFFFFF);
-                drawCount++;
+            if (SimpleCoordsClient.config.HudScale() > 0f) {
+                matrixStack.push();
+                matrixStack.scale(SimpleCoordsClient.config.HudScale(), SimpleCoordsClient.config.HudScale(), 1);
+                if (SimpleCoordsClient.config.showCoords()) {
+                    double x = player.getX();
+                    double y = player.getY();
+                    double z = player.getZ();
+                    coords = String.format("X: %.2f Y: %.2f Z: %.2f", x, y, z).replace(',', '.');
+                    textWidth = Math.max(textWidth, client.textRenderer.getWidth(coords));
+                    DrawableHelper.drawTextWithShadow(matrixStack, client.textRenderer, Text.literal(coords), posX, posY, 0xFFFFFF);
+                    drawCount++;
 
-            }
-            if (SimpleCoordsClient.config.showFacing()) {
-                facing = player.getHorizontalFacing().toString();
-                facing = "Facing: " + facing.substring(0, 1).toUpperCase() + facing.substring(1);
-                textWidth = Math.max(textWidth, client.textRenderer.getWidth(facing));
-                DrawableHelper.drawTextWithShadow(matrixStack, client.textRenderer, Text.literal(facing), posX, posY + drawCount * textHeight + 1, 0xFFFFFF);
-                drawCount++;
+                }
+                if (SimpleCoordsClient.config.showFacing()) {
+                    facing = player.getHorizontalFacing().toString();
+                    facing = "Facing: " + facing.substring(0, 1).toUpperCase() + facing.substring(1);
+                    textWidth = Math.max(textWidth, client.textRenderer.getWidth(facing));
+                    DrawableHelper.drawTextWithShadow(matrixStack, client.textRenderer, Text.literal(facing), posX, posY + drawCount * textHeight + 1, 0xFFFFFF);
+                    drawCount++;
 
-            }
-            if (SimpleCoordsClient.config.showBiome()) {
-                biome = "Biome: " + player.getWorld().getBiome(player.getBlockPos()).getKey().get().getValue().toString();
-                textWidth = Math.max(textWidth, client.textRenderer.getWidth(biome));
-                DrawableHelper.drawTextWithShadow(matrixStack, client.textRenderer, Text.literal(biome), posX, posY + drawCount * textHeight + 1, 0xFFFFFF);
-                drawCount++;
-            }
-            if (SimpleCoordsClient.config.showFPS()) {
-                fps = client.fpsDebugString;
-                fps = fps.substring(0, fps.indexOf("fps") + 3);
-                textWidth = Math.max(textWidth, client.textRenderer.getWidth(fps));
-                DrawableHelper.drawTextWithShadow(matrixStack, client.textRenderer, Text.literal(fps), posX, posY + drawCount * textHeight + 1, 0xFFFFFF);
-                drawCount++;
+                }
+                if (SimpleCoordsClient.config.showBiome()) {
+                    biome = "Biome: " + player.getWorld().getBiome(player.getBlockPos()).getKey().get().getValue().toString();
+                    textWidth = Math.max(textWidth, client.textRenderer.getWidth(biome));
+                    DrawableHelper.drawTextWithShadow(matrixStack, client.textRenderer, Text.literal(biome), posX, posY + drawCount * textHeight + 1, 0xFFFFFF);
+                    drawCount++;
+                }
+                if (SimpleCoordsClient.config.showFPS()) {
+                    fps = client.fpsDebugString;
+                    fps = fps.substring(0, fps.indexOf("fps") + 3);
+                    textWidth = Math.max(textWidth, client.textRenderer.getWidth(fps));
+                    DrawableHelper.drawTextWithShadow(matrixStack, client.textRenderer, Text.literal(fps), posX, posY + drawCount * textHeight + 1, 0xFFFFFF);
+                    drawCount++;
 
-            }
-            if (drawCount > 0) {
-                DrawableHelper.fill(matrixStack, 0, 0, textWidth + padding + offset, posY + drawCount * textHeight + padding, 0x30000000);
+                }
+                if (drawCount > 0) {
+                    DrawableHelper.fill(matrixStack, 0, 0, textWidth + padding + offset, posY + drawCount * textHeight + padding, 0x30000000);
+                }
+                matrixStack.pop();
             }
         }
     }
