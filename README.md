@@ -1,15 +1,16 @@
 # Simple Coords
 https://www.curseforge.com/minecraft/mc-mods/simple-coords
+https://modrinth.com/mod/simplecoords
 
 Simple Fabric mod to show Coords, Facing, FPS.
 ## Compability
 The mod is compatible with all other modifications
 
 ## Support 
-Support all popular versions of Minecraft, starting from 1.17 (comming soon)
+Support all popular versions of Minecraft, starting from 1.19
 
 ## LICENSE
 MIT License
 
 ## Contact
-Write me on Discord: @r4mble_
+Contact me on Discord: @r4mble_
