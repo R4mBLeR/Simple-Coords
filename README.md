@@ -1,5 +1,5 @@
 # Simple Coords
-https://www.curseforge.com/minecraft/mc-mods/simple-coords
+https://www.curseforge.com/minecraft/mc-mods/simple-coords <br/> 
 https://modrinth.com/mod/simplecoords
 
 Simple Fabric mod to show Coords, Facing, FPS.
