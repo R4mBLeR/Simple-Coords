@@ -10,4 +10,16 @@ public interface ModConfig {
     boolean showBiome();
 
     boolean showFPS();
+
+    String textColor();
+
+    int getTextColor();
+
+    String backgroundColor();
+
+    int getBackgroundColor();
+
+    int opacity();
+
+
 }
