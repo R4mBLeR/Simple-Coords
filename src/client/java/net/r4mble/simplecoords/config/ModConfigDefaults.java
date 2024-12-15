@@ -6,9 +6,8 @@ public class ModConfigDefaults implements ModConfig {
     public static final boolean showFacing = false;
     public static final boolean showBiome = false;
     public static final boolean showFPS = false;
-    public static final String textColor = "FFFFFF";
-    public static final String backgroundColor = "000000";
-    public static final int opacity = 30;
+    public static final int textColor = 0xFFFFFF;
+    public static final int backgroundColor = 0x30000000;
 
     @Override
     public float HudScale() {
@@ -36,28 +35,12 @@ public class ModConfigDefaults implements ModConfig {
     }
 
     @Override
-    public String textColor() {
+    public int textColor() {
         return textColor;
     }
 
     @Override
-    public int getTextColor() {
-        return Integer.parseInt(textColor, 16);
-    }
-
-    @Override
-    public String backgroundColor() {
+    public int backgroundColor() {
         return backgroundColor;
     }
-
-    @Override
-    public int getBackgroundColor() {
-        return 30000000;
-    }
-
-    @Override
-    public int opacity() {
-        return opacity;
-    }
-
 }
