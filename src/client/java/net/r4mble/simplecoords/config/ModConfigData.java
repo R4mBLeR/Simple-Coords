@@ -2,6 +2,7 @@ package net.r4mble.simplecoords.config;
 
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
+import me.shedaniel.autoconfig.annotation.ConfigEntry;
 
 @Config(name = "simplecoords")
 public class ModConfigData implements ConfigData, ModConfig {
@@ -10,13 +11,14 @@ public class ModConfigData implements ConfigData, ModConfig {
     public boolean showFacing = ModConfigDefaults.showFacing;
     public boolean showBiome = ModConfigDefaults.showBiome;
     public boolean showFPS = ModConfigDefaults.showFPS;
-    public String textColor = ModConfigDefaults.textColor;
-    public String backgroundColor = ModConfigDefaults.backgroundColor;
-    public int opacity = ModConfigDefaults.opacity;
+    @ConfigEntry.ColorPicker
+    public int textColor = ModConfigDefaults.textColor;
+    @ConfigEntry.ColorPicker(allowAlpha = true)
+    public int backgroundColor = ModConfigDefaults.backgroundColor;
 
     @Override
     public float HudScale() {
-        if (HudScale > 3.0f) {
+        if (HudScale < 0) {
             HudScale = ModConfigDefaults.HudScale;
         }
         return HudScale;
@@ -43,38 +45,14 @@ public class ModConfigData implements ConfigData, ModConfig {
     }
 
     @Override
-    public String textColor() {
-        if (textColor.length() != 6) {
-            textColor = ModConfigDefaults.textColor;
-        }
+    public int textColor() {
         return textColor;
     }
 
     @Override
-    public int getTextColor() {
-        return Integer.parseInt(textColor(), 16);
-    }
-
-    @Override
-    public String backgroundColor() {
-        if (backgroundColor.length() != 6) {
-            backgroundColor = ModConfigDefaults.backgroundColor;
-        }
+    public int backgroundColor() {
         return backgroundColor;
     }
 
-    @Override
-    public int getBackgroundColor() {
-        String sColor = opacity() + backgroundColor();
-        return Integer.parseInt(sColor, 16);
-    }
-
-    @Override
-    public int opacity() {
-        if (opacity > 100) {
-            opacity = 30;
-        }
-        return opacity;
-    }
 
 }
