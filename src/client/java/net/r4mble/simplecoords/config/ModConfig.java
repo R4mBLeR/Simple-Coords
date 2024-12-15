@@ -11,15 +11,9 @@ public interface ModConfig {
 
     boolean showFPS();
 
-    String textColor();
+    int textColor();
 
-    int getTextColor();
-
-    String backgroundColor();
-
-    int getBackgroundColor();
-
-    int opacity();
+    int backgroundColor();
 
 
 }

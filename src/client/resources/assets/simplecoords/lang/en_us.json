@@ -6,6 +6,5 @@
   "text.autoconfig.simplecoords.option.showFPS": "Show Fps",
   "text.autoconfig.simplecoords.option.showBiome": "Show Biome",
   "text.autoconfig.simplecoords.option.textColor": "Text Color",
-  "text.autoconfig.simplecoords.option.backgroundColor": "Background Color",
-  "text.autoconfig.simplecoords.option.opacity": "Background Opacity"
+  "text.autoconfig.simplecoords.option.backgroundColor": "Background Color"
 }
