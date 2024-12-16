@@ -37,7 +37,7 @@ public class CoordsHud implements HudRenderCallback {
                     double z = player.getZ();
                     coords = String.format("X: %.2f Y: %.2f Z: %.2f", x, y, z).replace(',', '.');
                     textWidth = Math.max(textWidth, client.textRenderer.getWidth(coords));
-                    DrawableHelper.drawTextWithShadow(matrixStack, client.textRenderer, coords, posX, posY, 0xFFFFFF);
+                    DrawableHelper.drawTextWithShadow(matrixStack, client.textRenderer, coords, posX, posY, SimpleCoordsClient.config.textColor());
                     drawCount++;
 
                 }
@@ -45,25 +45,25 @@ public class CoordsHud implements HudRenderCallback {
                     facing = player.getHorizontalFacing().toString();
                     facing = "Facing: " + facing.substring(0, 1).toUpperCase() + facing.substring(1);
                     textWidth = Math.max(textWidth, client.textRenderer.getWidth(facing));
-                    DrawableHelper.drawTextWithShadow(matrixStack, client.textRenderer, facing, posX, posY + drawCount * textHeight + 1, 0xFFFFFF);
+                    DrawableHelper.drawTextWithShadow(matrixStack, client.textRenderer, facing, posX, posY + drawCount * textHeight + 1, SimpleCoordsClient.config.textColor());
                     drawCount++;
 
                 }
                 if (SimpleCoordsClient.config.showBiome()) {
                     biome = "Biome: " + player.getWorld().getBiome(player.getBlockPos()).getKey().get().getValue().toString();
                     textWidth = Math.max(textWidth, client.textRenderer.getWidth(biome));
-                    DrawableHelper.drawTextWithShadow(matrixStack, client.textRenderer, biome, posX, posY + drawCount * textHeight + 1, 0xFFFFFF);
+                    DrawableHelper.drawTextWithShadow(matrixStack, client.textRenderer, biome, posX, posY + drawCount * textHeight + 1, SimpleCoordsClient.config.textColor());
                     drawCount++;
                 }
                 if (SimpleCoordsClient.config.showFPS()) {
                     fps = client.getCurrentFps() + " fps";
                     textWidth = Math.max(textWidth, client.textRenderer.getWidth(fps));
-                    DrawableHelper.drawTextWithShadow(matrixStack, client.textRenderer, fps, posX, posY + drawCount * textHeight + 1, 0xFFFFFF);
+                    DrawableHelper.drawTextWithShadow(matrixStack, client.textRenderer, fps, posX, posY + drawCount * textHeight + 1, SimpleCoordsClient.config.textColor());
                     drawCount++;
 
                 }
                 if (drawCount > 0) {
-                    DrawableHelper.fill(matrixStack, 0, 0, textWidth + padding + offset, posY + drawCount * textHeight + padding, 0x30000000);
+                    DrawableHelper.fill(matrixStack, 0, 0, textWidth + padding + offset, posY + drawCount * textHeight + padding, SimpleCoordsClient.config.backgroundColor());
                 }
                 matrixStack.pop();
             }
