@@ -10,4 +10,8 @@ public interface ModConfig {
     boolean showBiome();
 
     boolean showFPS();
+
+    int textColor();
+
+    int backgroundColor();
 }
