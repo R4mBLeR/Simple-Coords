@@ -17,10 +17,10 @@ public class ModMenuIntegration implements ModMenuApi {
     @Override
     public ConfigScreenFactory<?> getModConfigScreenFactory() {
         return parent -> {
-            if(FabricLoader.getInstance().isModLoaded("cloth-config")) {
+            if (FabricLoader.getInstance().isModLoaded("cloth-config")) {
                 return AutoConfig.getConfigScreen(ModConfigData.class, parent).get();
             }
-            return new NoticeScreen(() -> MinecraftClient.getInstance().setScreen(parent), Text.of("Simple Coords"), Text.of("Simple Coords requires Cloth Config to configure the mod, adding new values to the HUD"));
+            return new NoticeScreen(() -> MinecraftClient.getInstance().setScreen(parent), Text.of("Simple Coords"), Text.of("Simple Coords requires Cloth Config to configure the mod"));
         };
     }
 }
